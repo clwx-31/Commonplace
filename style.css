@@ -1,173 +1,323 @@
 /* ============================================================
-   Common Place — styles. Mobile-first & phone-friendly.
-   Tweak the colors in :root to reskin the whole app.
+   Common Place — MEDIEVAL / FANTASY skin
+   (Skyrim · RDR2 rugged + BOTW painterly warmth)
+   Parchment · leather · wrought iron · antique gold · wine red.
+   Structure/classes/JS untouched — pure look & feel.
+   Retune the palette in :root first; textures/ornament layer on top.
    ============================================================ */
 :root {
-  --bg1: #4a6c7d;   /* dusk sky (top)   */
-  --bg2: #edcfa6;   /* sunrise sand (horizon) */
-  --card: #fbf6ec;  /* warm paper       */
-  --ink: #322e28;   /* soft charcoal    */
-  --muted: #6f6455; /* driftwood        */
-  --brand: #2e6657; /* evergreen        */
-  --brand-2: #b85423; /* burnt sienna / dawn */
-  --ok: #367a58;    /* forest green     */
-  --line: #e8ddc9;  /* stone line       */
-  --radius: 20px;
-  --shadow: 0 12px 28px rgba(60, 45, 25, 0.16);
+  --bg1: #241c12;    /* dark leather (bg top)   */
+  --bg2: #14100a;    /* near-black leather       */
+  --card: #e7d6ad;   /* aged parchment           */
+  --ink: #2c2113;    /* dark walnut ink          */
+  --muted: #6c583a;  /* faded sepia              */
+  --brand: #8a6a2c;  /* antique gold-brown       */
+  --brand-2: #7a1e1e;/* deep wine / blood red    */
+  --ok: #55632f;     /* moss green               */
+  --line: #c6ac78;   /* muted gold rule          */
+  --radius: 8px;
+  --shadow: 0 10px 24px rgba(0, 0, 0, .45);
+
+  /* extra medieval tokens */
+  --gold: #a6852f;
+  --gold-lite: #d8b558;
+  --leather: #4a3826;
+  --leather-d: #2f2416;
+  --parch-2: #ddc999;
+  --parch-edge: #b79b64;
+  /* reusable sepia paper grain (SVG turbulence, desaturated) */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; padding: 0; }
 body {
-  font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", "Avenir Next", Roboto, sans-serif;
+  font-family: "EB Garamond", Georgia, "Times New Roman", serif;
   color: var(--ink);
-  /* dusk sky + soft sunrise glow + a layered mountain range pinned to the bottom */
+  /* worn leather: grain + vignette + warm firelight glow over a dark gradient */
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpolygon points='0,320 0,175 210,120 410,195 630,95 850,185 1070,110 1290,195 1440,140 1440,320' fill='%23b6cdc3'/%3E%3Cpolygon points='0,320 0,240 190,182 390,255 570,168 770,255 990,180 1210,255 1440,192 1440,320' fill='%233f6f60'/%3E%3C/svg%3E") center bottom / 100% 168px no-repeat,
-    radial-gradient(115% 75% at 82% 6%, rgba(255,214,150,.60), rgba(255,214,150,0) 55%),
-    linear-gradient(180deg, #3f5c6b 0%, #6f93a8 26%, #bcd2d6 52%, #ecd7b6 80%, #edcfa6 100%);
-  background-attachment: fixed, fixed, fixed;
-  background-repeat: no-repeat;
+    var(--grain),
+    radial-gradient(120% 90% at 50% -10%, rgba(150,110,50,.28), rgba(150,110,50,0) 45%),
+    radial-gradient(140% 120% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+  background-size: 150px 150px, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed;
   min-height: 100dvh;
   padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
 }
+/* let the grain read as texture, not TV static */
+body { background-blend-mode: overlay, normal, normal, normal; }
 
-#app { max-width: 520px; margin: 0 auto; padding: 18px 16px 90px; }
-.loading { color: #fff; text-align: center; padding: 40vh 0; opacity: .8; }
+#app { max-width: 520px; margin: 0 auto; padding: 20px 16px 92px; }
+.loading {
+  color: var(--gold-lite); text-align: center; padding: 40vh 0;
+  font-family: "Cinzel", serif; letter-spacing: .12em; font-size: 18px;
+}
 
 /* ---------- header ---------- */
-.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-.logo { color: #fff; font-weight: 800; font-size: 22px; letter-spacing: .3px; display: flex; gap: 8px; align-items: center; text-shadow: 0 1px 3px rgba(31, 45, 55, .35); }
-.whoami { color: #fff; font-size: 13px; opacity: .95; background: rgba(255,255,255,.20); padding: 6px 12px; border-radius: 999px; border: none; cursor: pointer; }
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.logo {
+  color: var(--gold-lite);
+  font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 700;
+  font-size: 24px; letter-spacing: .04em; display: flex; gap: 9px; align-items: center;
+  text-shadow: 0 1px 0 #000, 0 2px 6px rgba(0,0,0,.6);
+}
+.whoami {
+  color: #f3e6c4; font-size: 13px; font-family: "Cinzel", serif; letter-spacing: .04em;
+  background: linear-gradient(180deg, #3d2f1e, #241a10);
+  padding: 7px 13px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--gold); box-shadow: inset 0 1px 0 rgba(216,181,88,.35), 0 2px 4px rgba(0,0,0,.4);
+}
+.whoami:active { transform: translateY(1px); }
 
-/* ---------- cards ---------- */
-.card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; margin-bottom: 16px; }
-.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+/* ============================================================
+   Cards — parchment leaf: aged paper, dark frame, inset gold
+   hairline, grain overlay + filigree corner flourishes.
+   ============================================================ */
+.card {
+  position: relative;
+  background:
+    radial-gradient(120% 90% at 15% 10%, rgba(255,246,214,.55), rgba(255,246,214,0) 55%),
+    radial-gradient(120% 120% at 85% 100%, rgba(120,90,45,.28), rgba(120,90,45,0) 55%),
+    linear-gradient(180deg, #ecdcb6, var(--card) 45%, var(--parch-2));
+  border: 1px solid #7c6537;
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 0 2px rgba(166,133,47,.55),      /* gold inner hairline */
+    inset 0 0 22px rgba(120,88,40,.30),        /* aged inner shadow   */
+    var(--shadow);
+}
+/* paper grain, kept subtle so text stays crisp */
+.card::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: var(--grain); background-size: 150px 150px;
+  mix-blend-mode: multiply; opacity: .10;
+}
+/* filigree flourishes in all four corners (2 per pseudo-element) */
+.card::after {
+  content: ""; position: absolute; inset: 4px; pointer-events: none; z-index: 2;
+  background-repeat: no-repeat;
+  background-position: top left, top right, bottom left, bottom right;
+  background-size: 42px 42px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46'%3E%3Cg fill='none' stroke='%23a6852f' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath d='M8 27 V14 Q8 8 14 8 H27'/%3E%3Cpath d='M20 8 Q26 10 24 16 Q29 13 27 7'/%3E%3Ccircle cx='8' cy='8' r='2' fill='%23a6852f' stroke='none'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46'%3E%3Cg transform='rotate(90 23 23)' fill='none' stroke='%23a6852f' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath d='M8 27 V14 Q8 8 14 8 H27'/%3E%3Cpath d='M20 8 Q26 10 24 16 Q29 13 27 7'/%3E%3Ccircle cx='8' cy='8' r='2' fill='%23a6852f' stroke='none'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46'%3E%3Cg transform='rotate(270 23 23)' fill='none' stroke='%23a6852f' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath d='M8 27 V14 Q8 8 14 8 H27'/%3E%3Cpath d='M20 8 Q26 10 24 16 Q29 13 27 7'/%3E%3Ccircle cx='8' cy='8' r='2' fill='%23a6852f' stroke='none'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46'%3E%3Cg transform='rotate(180 23 23)' fill='none' stroke='%23a6852f' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath d='M8 27 V14 Q8 8 14 8 H27'/%3E%3Cpath d='M20 8 Q26 10 24 16 Q29 13 27 7'/%3E%3Ccircle cx='8' cy='8' r='2' fill='%23a6852f' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+}
+/* keep card content above the grain layer */
+.card > * { position: relative; z-index: 1; }
 
-/* tag pill */
-.pill { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; color: #fff; margin-bottom: 14px; }
-/* earthy, outdoorsy tag colors — all keep white text at AA contrast */
-.pill.deep { background:#3a6b5e } .pill.funny { background:#c1702a } .pill.wyr { background:#4a6d82 }
-.pill.hot { background:#b04a34 } .pill.memory { background:#5f6f3c } .pill.hypo { background:#7a5f78 } .pill.pick { background:#a67334 }
+.eyebrow {
+  font-family: "Cinzel", serif; font-size: 12px; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+}
 
-.question { font-size: 23px; line-height: 1.35; font-weight: 700; margin: 0 0 8px; }
+/* ---------- tag pills → heraldic enamel badges ---------- */
+.pill {
+  display: inline-block; font-family: "Cinzel", serif; font-size: 10px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; padding: 5px 12px 4px;
+  border-radius: 4px; color: #f6ecd0; margin-bottom: 14px;
+  border: 1px solid rgba(0,0,0,.35);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 0 0 0 1px rgba(216,181,88,.35), 0 1px 2px rgba(0,0,0,.35);
+  text-shadow: 0 1px 1px rgba(0,0,0,.5);
+}
+.pill.deep   { background: linear-gradient(180deg,#3f5a4f,#2c4034); }
+.pill.funny  { background: linear-gradient(180deg,#a9702a,#7f5015); }
+.pill.wyr    { background: linear-gradient(180deg,#3d5a6b,#2a3f4c); }
+.pill.hot    { background: linear-gradient(180deg,#8a2626,#5f1616); }
+.pill.memory { background: linear-gradient(180deg,#5f6a34,#434c22); }
+.pill.hypo   { background: linear-gradient(180deg,#5c4568,#3f2f49); }
+.pill.pick   { background: linear-gradient(180deg,#8a5a24,#5f3c13); }
 
-/* ---------- inputs / buttons ---------- */
+.question {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 24px; line-height: 1.34; font-weight: 600; margin: 0 0 8px; color: #241a0e;
+}
+
+/* ---------- inputs → parchment fields ---------- */
 textarea {
-  width: 100%; min-height: 110px; border: 2px solid var(--line); border-radius: 14px;
-  padding: 14px; font: inherit; font-size: 16px; resize: vertical; margin-top: 12px;
+  width: 100%; min-height: 112px; font: inherit; font-size: 17px; color: var(--ink);
+  padding: 13px 14px; margin-top: 14px; resize: vertical;
+  background: linear-gradient(180deg, #f3e8c8, #e9dab4);
+  border: 1px solid #9c7f49; border-radius: 4px;
+  box-shadow: inset 0 2px 5px rgba(90,66,28,.28), inset 0 0 0 1px rgba(255,250,232,.4);
 }
-textarea:focus { outline: none; border-color: var(--brand); }
+textarea::placeholder { color: #9a835c; font-style: italic; }
+textarea:focus { outline: none; border-color: var(--brand-2); box-shadow: inset 0 2px 5px rgba(90,66,28,.30), 0 0 0 2px rgba(122,30,30,.25); }
+
+/* ---------- buttons → carved wood/iron plaques ---------- */
 .btn {
-  display: block; width: 100%; border: none; border-radius: 14px; padding: 15px;
-  font-size: 16px; font-weight: 800; color: #fff; cursor: pointer; margin-top: 12px;
-  background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 8px 18px rgba(46,102,87,.30);
-  transition: transform .08s ease, opacity .2s;
+  display: block; width: 100%; cursor: pointer; margin-top: 14px;
+  font-family: "Cinzel", serif; font-size: 16px; font-weight: 600; letter-spacing: .05em;
+  color: #f6e7c1; padding: 15px; border-radius: 5px;
+  background: linear-gradient(180deg, #5b4630 0%, #43331f 55%, #38291728 100%), linear-gradient(180deg,#5b4630,#382917);
+  border: 1px solid #201509;
+  text-shadow: 0 1px 1px rgba(0,0,0,.6);
+  box-shadow:
+    inset 0 1px 0 rgba(216,181,88,.45),
+    inset 0 0 0 1px rgba(166,133,47,.35),
+    inset 0 -6px 10px rgba(0,0,0,.35),
+    0 3px 0 #201509, 0 6px 12px rgba(0,0,0,.4);
+  transition: transform .06s ease, box-shadow .06s ease;
 }
-.btn:active { transform: translateY(1px) scale(.995); }
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: inset 0 1px 0 rgba(216,181,88,.30), inset 0 0 0 1px rgba(166,133,47,.3), inset 0 -3px 8px rgba(0,0,0,.45), 0 0 0 #201509, 0 2px 5px rgba(0,0,0,.4);
+}
 .btn:disabled { opacity: .5; cursor: default; }
-.btn.ghost { background: #f2ead9; color: var(--brand); box-shadow: none; }
+/* ghost → parchment plaque with a dark serif label */
+.btn.ghost {
+  color: #4a3620;
+  background: linear-gradient(180deg, #ecdcb4, #d8c390);
+  border: 1px solid #9c7f49; text-shadow: 0 1px 0 rgba(255,250,232,.5);
+  box-shadow: inset 0 1px 0 rgba(255,250,232,.6), inset 0 0 0 1px rgba(166,133,47,.4), 0 3px 0 #9c7f49, 0 5px 10px rgba(0,0,0,.3);
+}
 
 /* ---------- answers reveal ---------- */
 .answers { margin-top: 6px; }
-.answer-row { border-top: 1px solid var(--line); padding: 14px 0; }
+.answer-row { border-top: 1px solid rgba(124,101,55,.4); padding: 15px 0; }
 .answer-row:first-child { border-top: none; }
-.answer-name { font-weight: 800; font-size: 14px; color: var(--brand); }
-.answer-text { margin-top: 4px; font-size: 15px; line-height: 1.45; white-space: pre-wrap; }
-.waiting-note { color: var(--muted); font-size: 14px; margin-top: 14px; text-align: center; }
+.answer-name { font-family: "Cinzel", serif; font-weight: 600; font-size: 14px; letter-spacing: .04em; color: var(--brand-2); }
+.answer-text { margin-top: 5px; font-size: 17px; line-height: 1.5; white-space: pre-wrap; color: #332615; }
+.waiting-note { color: var(--muted); font-style: italic; font-size: 15px; margin-top: 14px; text-align: center; }
 
-/* ---------- leaderboard ---------- */
-.lb-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+/* ---------- leaderboard → tavern scoreboard ---------- */
+.lb-row { display: flex; align-items: center; gap: 12px; padding: 13px 4px; border-top: 1px solid rgba(124,101,55,.4); }
 .lb-row:first-child { border-top: none; }
-.lb-rank { width: 30px; font-weight: 900; font-size: 18px; color: var(--muted); text-align: center; }
-.lb-rank.top { color: var(--brand-2); }
-.lb-name { flex: 1; font-weight: 700; }
-.lb-score { font-weight: 900; font-variant-numeric: tabular-nums; }
-.lb-mine { background: #f4ecda; margin: 0 -12px; padding-left: 12px; padding-right: 12px; border-radius: 12px; }
+.lb-rank { width: 30px; font-family: "Cinzel", serif; font-weight: 700; font-size: 18px; color: var(--muted); text-align: center; }
+.lb-rank.top { color: #9a6a12; }
+.lb-name { flex: 1; font-family: "Cinzel", serif; font-weight: 600; font-size: 16px; letter-spacing: .02em; color: #2c2113; }
+.lb-score { font-family: "Cinzel", serif; font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums; color: var(--brand-2); }
+.lb-mine {
+  background: linear-gradient(180deg, rgba(216,181,88,.28), rgba(216,181,88,.14));
+  margin: 0 -10px; padding-left: 10px; padding-right: 10px; border-radius: 5px;
+  box-shadow: inset 0 0 0 1px rgba(166,133,47,.5);
+}
 
 /* ---------- games ---------- */
 .game { text-align: center; }
-.game-top { display: flex; justify-content: space-between; font-weight: 800; color: var(--muted); margin-bottom: 18px; }
-.game-prompt { font-size: 40px; font-weight: 900; margin: 10px 0 16px; }
-.game-input { width: 100%; text-align: center; font-size: 28px; padding: 12px; border: 2px solid var(--line); border-radius: 14px; }
-.game-input:focus { outline: none; border-color: var(--brand); }
-.game-hint { color: var(--muted); font-size: 13px; margin-top: 12px; }
-.tap-btn { width: 100%; height: 180px; font-size: 40px; font-weight: 900; color:#fff; border: none; border-radius: 20px; background: linear-gradient(135deg, var(--brand-2), var(--brand)); }
-.react-pad { width: 100%; height: 200px; font-size: 30px; font-weight: 900; color:#fff; border: none; border-radius: 20px; }
-.react-pad.wait { background:#8f9a93 } .react-pad.go { background:var(--ok) } .react-pad.early { background:#b04a34 } .react-pad.done { background:var(--brand) }
+.game-top { display: flex; justify-content: space-between; font-family: "Cinzel", serif; font-weight: 600; letter-spacing: .04em; color: var(--muted); margin-bottom: 18px; }
+.game-prompt { font-family: "Cinzel", serif; font-size: 40px; font-weight: 700; margin: 10px 0 16px; color: #241a0e; }
+.game-input {
+  width: 100%; text-align: center; font-family: "EB Garamond", serif; font-size: 28px; padding: 12px;
+  background: linear-gradient(180deg,#f3e8c8,#e9dab4); border: 1px solid #9c7f49; border-radius: 4px; color: var(--ink);
+  box-shadow: inset 0 2px 5px rgba(90,66,28,.28);
+}
+.game-input:focus { outline: none; border-color: var(--brand-2); }
+.game-hint { color: var(--muted); font-style: italic; font-size: 14px; margin-top: 12px; }
+.tap-btn { width: 100%; height: 180px; font-family: "Cinzel", serif; font-size: 38px; font-weight: 700; color:#f6e7c1; border: 1px solid #201509; border-radius: 8px; cursor: pointer;
+  background: linear-gradient(180deg,#6a3030,#4a1c1c); text-shadow: 0 1px 2px rgba(0,0,0,.6);
+  box-shadow: inset 0 1px 0 rgba(216,181,88,.4), inset 0 -6px 12px rgba(0,0,0,.4), 0 4px 10px rgba(0,0,0,.4); }
+.tap-btn:active { transform: translateY(2px); }
+.react-pad { width: 100%; height: 200px; font-family: "Cinzel", serif; font-size: 30px; font-weight: 700; color:#f6e7c1; border: 1px solid #201509; border-radius: 8px; text-shadow: 0 1px 2px rgba(0,0,0,.6); box-shadow: inset 0 1px 0 rgba(255,235,190,.25), inset 0 -6px 12px rgba(0,0,0,.35); }
+.react-pad.wait { background: linear-gradient(180deg,#4a443a,#2f2b24); }
+.react-pad.go   { background: linear-gradient(180deg,#5f7038,#3f4c22); }
+.react-pad.early{ background: linear-gradient(180deg,#8a2626,#5f1616); }
+.react-pad.done { background: linear-gradient(180deg,#5b4630,#382917); }
 
-/* ---------- name picker ---------- */
-.picker-title { color:#fff; text-align:center; font-size: 28px; font-weight: 900; margin: 6vh 0 6px; text-shadow: 0 2px 6px rgba(31, 45, 55, .35); }
-.picker-sub { color:#fff; text-align:center; opacity:.92; margin-bottom: 22px; text-shadow: 0 1px 3px rgba(31, 45, 55, .3); }
-.name-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.name-btn { padding: 20px 12px; border-radius: 16px; border: none; background: var(--card); font-size: 17px; font-weight: 800; color: var(--ink); cursor: pointer; box-shadow: var(--shadow); }
-.name-btn:active { transform: scale(.97); }
+/* ---------- name picker → choose thy adventurer ---------- */
+.picker-title {
+  color: var(--gold-lite); text-align: center; font-family: "Cinzel Decorative","Cinzel",serif;
+  font-size: 30px; font-weight: 700; letter-spacing: .03em; margin: 6vh 0 6px;
+  text-shadow: 0 1px 0 #000, 0 3px 10px rgba(0,0,0,.6);
+}
+.picker-sub { color: #d8c79c; text-align: center; font-style: italic; opacity: .95; margin-bottom: 24px; text-shadow: 0 1px 3px rgba(0,0,0,.5); }
+.name-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.name-btn {
+  padding: 22px 12px; border-radius: 6px; cursor: pointer;
+  font-family: "Cinzel", serif; font-size: 17px; font-weight: 600; letter-spacing: .03em; color: #3a2b16;
+  background: linear-gradient(180deg, #ecdcb4, var(--card) 55%, var(--parch-2));
+  border: 1px solid #7c6537;
+  box-shadow: inset 0 0 0 2px rgba(166,133,47,.5), inset 0 0 14px rgba(120,88,40,.25), 0 4px 10px rgba(0,0,0,.4);
+  text-shadow: 0 1px 0 rgba(255,250,232,.5);
+}
+.name-btn:active { transform: translateY(2px); }
 
-/* ---------- bottom tab bar ---------- */
-.tabs { position: fixed; left: 0; right: 0; bottom: 0; display: flex; background: rgba(251,246,236,.95); backdrop-filter: blur(8px); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
-.tab { flex: 1; text-align: center; padding: 12px 0 14px; font-size: 12px; font-weight: 700; color: var(--muted); background: none; border: none; cursor: pointer; }
-.tab .ic { display: block; font-size: 20px; margin-bottom: 2px; }
-.tab.active { color: var(--brand); }
+/* ---------- bottom tab bar → iron banner ---------- */
+.tabs {
+  position: fixed; left: 0; right: 0; bottom: 0; display: flex;
+  background: linear-gradient(180deg, #2c2114, #1c150c);
+  border-top: 2px solid var(--gold); padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4px 14px rgba(0,0,0,.5);
+}
+.tab { flex: 1; text-align: center; padding: 12px 0 14px; font-family: "Cinzel", serif; font-size: 12px; font-weight: 600; letter-spacing: .06em; color: #b3a079; background: none; border: none; cursor: pointer; }
+.tab .ic { display: block; font-size: 20px; margin-bottom: 3px; filter: sepia(.3); }
+.tab.active { color: var(--gold-lite); text-shadow: 0 0 8px rgba(216,181,88,.4); }
 
-.center-note { color: var(--muted); text-align: center; padding: 20px 0; }
+.center-note { color: var(--muted); font-style: italic; text-align: center; padding: 20px 0; }
 
 /* ============================================================
-   Extra mini-games
+   Mini-games — tactile parchment/enamel tiles
    ============================================================ */
-.game-hintline { color: var(--muted); font-weight: 700; }
-.game-total { font-weight: 800; color: var(--muted); }
+.game-hintline { color: var(--muted); font-family: "Cinzel", serif; font-weight: 600; }
+.game-total { font-family: "Cinzel", serif; font-weight: 600; color: var(--muted); }
 
-/* Sequence Memory */
-.pad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.pad { height: 92px; border: none; border-radius: 16px; opacity: .5; cursor: pointer; transition: opacity .1s, transform .1s; }
+/* shared tile look for the many game surfaces */
+.odd-cell, .mole-cell, .rps-btn, .big-btn, .schulte-cell, .swatch, .pad {
+  border: 1px solid #7c6537 !important;
+  box-shadow: inset 0 1px 0 rgba(255,250,232,.4), 0 2px 4px rgba(0,0,0,.3);
+}
+
+/* Sequence Memory — enamel sigils */
+.pad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pad { height: 92px; border-radius: 8px; opacity: .55; cursor: pointer; transition: opacity .1s, transform .1s; }
 .pad.lit { opacity: 1; transform: scale(1.03); }
-.pad-0 { background: #ee5253; } .pad-1 { background: #0abde3; } .pad-2 { background: #10ac84; } .pad-3 { background: #ff9f43; }
+.pad-0 { background: linear-gradient(180deg,#8a2626,#5f1616); }
+.pad-1 { background: linear-gradient(180deg,#3d5a6b,#2a3f4c); }
+.pad-2 { background: linear-gradient(180deg,#5f6a34,#434c22); }
+.pad-3 { background: linear-gradient(180deg,#a9702a,#7f5015); }
 
 /* Color Clash */
-.stroop-word { font-size: 52px; font-weight: 900; text-align: center; margin: 18px 0 22px; }
-.swatch-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.swatch { padding: 18px; border: none; border-radius: 14px; color: #fff; font-weight: 800; font-size: 16px; cursor: pointer; text-shadow: 0 1px 2px rgba(0,0,0,.25); }
+.stroop-word { font-family: "Cinzel", serif; font-size: 52px; font-weight: 700; text-align: center; margin: 18px 0 22px; }
+.swatch-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.swatch { padding: 18px; border-radius: 6px; color: #f6ecd0; font-family: "Cinzel", serif; font-weight: 600; font-size: 16px; cursor: pointer; text-shadow: 0 1px 2px rgba(0,0,0,.45); }
 
 /* Odd One Out */
 .odd-grid { display: grid; gap: 8px; }
-.odd-cell { aspect-ratio: 1; border: none; border-radius: 12px; background: #f2ead9; font-size: 26px; cursor: pointer; }
+.odd-cell { aspect-ratio: 1; border-radius: 6px; background: linear-gradient(180deg,#ecdcb4,#dcc793); font-size: 26px; cursor: pointer; }
 
 /* Whack-a-Mole */
-.mole-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.mole-cell { aspect-ratio: 1; border: none; border-radius: 16px; background: #e9e4d2; font-size: 38px; cursor: pointer; }
+.mole-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.mole-cell { aspect-ratio: 1; border-radius: 8px; background: radial-gradient(circle at 50% 35%, #6b4f2e, #3f2c16); font-size: 38px; cursor: pointer; }
 
 /* Aim Trainer */
-.aim-area { position: relative; height: 280px; background: #f2ead9; border-radius: 16px; overflow: hidden; }
+.aim-area { position: relative; height: 280px; border-radius: 8px; overflow: hidden;
+  background: linear-gradient(180deg,#e4d1a2,#d2ba86); border: 1px solid #7c6537; box-shadow: inset 0 2px 8px rgba(90,66,28,.35); }
 .aim-target { position: absolute; width: 52px; height: 52px; border: none; border-radius: 50%; background: none; font-size: 34px; cursor: pointer; padding: 0; }
 
 /* RPS / two-button / true-false rows */
-.two-row, .tf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.rps-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-.rps-btn { font-size: 40px; padding: 16px 0; border: none; border-radius: 16px; background: #f2ead9; cursor: pointer; }
-.rps-result { text-align: center; font-weight: 700; font-size: 17px; margin: 8px 0 16px; min-height: 24px; }
+.two-row, .tf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.rps-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.rps-btn { font-size: 40px; padding: 16px 0; border-radius: 8px; background: linear-gradient(180deg,#ecdcb4,#dcc793); cursor: pointer; }
+.rps-result { text-align: center; font-family: "EB Garamond", serif; font-weight: 600; font-size: 18px; margin: 8px 0 16px; min-height: 24px; color: var(--ink); }
 
 /* Guess the Number */
-.guess-feedback { text-align: center; font-size: 20px; font-weight: 800; margin: 14px 0; min-height: 26px; }
+.guess-feedback { text-align: center; font-family: "Cinzel", serif; font-size: 20px; font-weight: 600; margin: 14px 0; min-height: 26px; color: var(--ink); }
 
 /* Bigger Number */
-.big-btn { font-size: 34px; font-weight: 900; padding: 34px 0; border: none; border-radius: 18px; background: #f2ead9; color: var(--ink); cursor: pointer; }
+.big-btn { font-family: "Cinzel", serif; font-size: 34px; font-weight: 700; padding: 34px 0; border-radius: 8px; background: linear-gradient(180deg,#ecdcb4,#dcc793); color: var(--ink); cursor: pointer; }
 
 /* Digit Memory */
-.digit-show { text-align: center; font-size: 46px; font-weight: 900; letter-spacing: 6px; min-height: 60px; margin: 20px 0; }
+.digit-show { text-align: center; font-family: "Cinzel", serif; font-size: 46px; font-weight: 700; letter-spacing: 6px; min-height: 60px; margin: 20px 0; color: #241a0e; }
 
-/* Higher or Lower */
-.card-face { text-align: center; font-size: 70px; font-weight: 900; margin: 10px 0 20px; }
+/* Higher or Lower — a drawn card */
+.card-face { text-align: center; font-family: "Cinzel", serif; font-size: 70px; font-weight: 700; margin: 10px 0 20px; color: var(--brand-2); }
 .hilo-msg { text-align: center; }
 
 /* Number Hunt */
-.schulte-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
-.schulte-cell { aspect-ratio: 1; border: none; border-radius: 10px; background: #f2ead9; font-size: 18px; font-weight: 800; cursor: pointer; }
-.schulte-cell.hit { background: var(--ok); color: #fff; }
+.schulte-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+.schulte-cell { aspect-ratio: 1; border-radius: 5px; background: linear-gradient(180deg,#ecdcb4,#dcc793); font-family: "Cinzel", serif; font-size: 18px; font-weight: 700; cursor: pointer; color: var(--ink); }
+.schulte-cell.hit { background: linear-gradient(180deg,#5f6a34,#434c22); color: #f6ecd0; }
 
 /* Type / Scramble */
-.scramble-word, .type-word { text-align: center; font-size: 34px; font-weight: 900; letter-spacing: 3px; margin: 16px 0; }
+.scramble-word, .type-word { text-align: center; font-family: "Cinzel", serif; font-size: 34px; font-weight: 700; letter-spacing: 3px; margin: 16px 0; color: #241a0e; }
 
 /* Stop the Bar */
-.bar-track { position: relative; height: 34px; background: #f2ead9; border-radius: 999px; margin: 24px 0; overflow: hidden; }
-.bar-zone { position: absolute; left: 42%; width: 16%; top: 0; bottom: 0; background: rgba(54,122,88,.32); }
-.bar-marker { position: absolute; top: -4px; bottom: -4px; width: 6px; background: var(--brand); border-radius: 3px; left: 0; }
+.bar-track { position: relative; height: 34px; border-radius: 6px; margin: 24px 0; overflow: hidden;
+  background: linear-gradient(180deg,#d2ba86,#c0a674); border: 1px solid #7c6537; box-shadow: inset 0 2px 5px rgba(90,66,28,.35); }
+.bar-zone { position: absolute; left: 42%; width: 16%; top: 0; bottom: 0; background: rgba(85,99,47,.5); }
+.bar-marker { position: absolute; top: -4px; bottom: -4px; width: 6px; background: var(--brand-2); border-radius: 3px; left: 0; box-shadow: 0 0 6px rgba(122,30,30,.6); }
