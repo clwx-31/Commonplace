@@ -12,8 +12,8 @@
 // ============================================================
 
 const CONFIG = {
-  SUPABASE_URL: "PASTE_YOUR_SUPABASE_URL_HERE",
-  SUPABASE_ANON_KEY: "PASTE_YOUR_SUPABASE_ANON_KEY_HERE",
+  SUPABASE_URL: "https://gueawhtcvnuakvftobeb.supabase.co",
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1ZWF3aHRjdm51YWt2ZnRvYmViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUyOTk3NDgsImV4cCI6MjEwMDg3NTc0OH0.u2KH6YLeEAbqk33WMEYjXOapx7N1nzt7Zf5LdH2bSrw",
 
   FRIENDS: [
     "You",
