@@ -1,0 +1,105 @@
+/* ============================================================
+   Common Place — styles. Mobile-first & phone-friendly.
+   Tweak the colors in :root to reskin the whole app.
+   ============================================================ */
+:root {
+  --bg1: #221a4d;
+  --bg2: #6d5efc;
+  --card: #ffffff;
+  --ink: #1d1b33;
+  --muted: #6b6980;
+  --brand: #6d5efc;
+  --brand-2: #ff7ac6;
+  --ok: #16c98d;
+  --line: #ece9f5;
+  --radius: 20px;
+  --shadow: 0 12px 30px rgba(34, 26, 77, 0.18);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(160deg, var(--bg1), var(--bg2));
+  min-height: 100dvh;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+
+#app { max-width: 520px; margin: 0 auto; padding: 18px 16px 90px; }
+.loading { color: #fff; text-align: center; padding: 40vh 0; opacity: .8; }
+
+/* ---------- header ---------- */
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.logo { color: #fff; font-weight: 800; font-size: 22px; letter-spacing: .3px; display: flex; gap: 8px; align-items: center; }
+.whoami { color: #fff; font-size: 13px; opacity: .9; background: rgba(255,255,255,.16); padding: 6px 12px; border-radius: 999px; border: none; cursor: pointer; }
+
+/* ---------- cards ---------- */
+.card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; margin-bottom: 16px; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+
+/* tag pill */
+.pill { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; color: #fff; margin-bottom: 14px; }
+.pill.deep { background:#6d5efc } .pill.funny { background:#ff9f43 } .pill.wyr { background:#0abde3 }
+.pill.hot { background:#ee5253 } .pill.memory { background:#10ac84 } .pill.hypo { background:#8854d0 } .pill.pick { background:#f368e0 }
+
+.question { font-size: 23px; line-height: 1.35; font-weight: 700; margin: 0 0 8px; }
+
+/* ---------- inputs / buttons ---------- */
+textarea {
+  width: 100%; min-height: 110px; border: 2px solid var(--line); border-radius: 14px;
+  padding: 14px; font: inherit; font-size: 16px; resize: vertical; margin-top: 12px;
+}
+textarea:focus { outline: none; border-color: var(--brand); }
+.btn {
+  display: block; width: 100%; border: none; border-radius: 14px; padding: 15px;
+  font-size: 16px; font-weight: 800; color: #fff; cursor: pointer; margin-top: 12px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 8px 18px rgba(109,94,252,.35);
+  transition: transform .08s ease, opacity .2s;
+}
+.btn:active { transform: translateY(1px) scale(.995); }
+.btn:disabled { opacity: .5; cursor: default; }
+.btn.ghost { background: #f4f2fd; color: var(--brand); box-shadow: none; }
+
+/* ---------- answers reveal ---------- */
+.answers { margin-top: 6px; }
+.answer-row { border-top: 1px solid var(--line); padding: 14px 0; }
+.answer-row:first-child { border-top: none; }
+.answer-name { font-weight: 800; font-size: 14px; color: var(--brand); }
+.answer-text { margin-top: 4px; font-size: 15px; line-height: 1.45; white-space: pre-wrap; }
+.waiting-note { color: var(--muted); font-size: 14px; margin-top: 14px; text-align: center; }
+
+/* ---------- leaderboard ---------- */
+.lb-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.lb-row:first-child { border-top: none; }
+.lb-rank { width: 30px; font-weight: 900; font-size: 18px; color: var(--muted); text-align: center; }
+.lb-rank.top { color: var(--brand-2); }
+.lb-name { flex: 1; font-weight: 700; }
+.lb-score { font-weight: 900; font-variant-numeric: tabular-nums; }
+.lb-mine { background: #f7f5ff; margin: 0 -12px; padding-left: 12px; padding-right: 12px; border-radius: 12px; }
+
+/* ---------- games ---------- */
+.game { text-align: center; }
+.game-top { display: flex; justify-content: space-between; font-weight: 800; color: var(--muted); margin-bottom: 18px; }
+.game-prompt { font-size: 40px; font-weight: 900; margin: 10px 0 16px; }
+.game-input { width: 100%; text-align: center; font-size: 28px; padding: 12px; border: 2px solid var(--line); border-radius: 14px; }
+.game-input:focus { outline: none; border-color: var(--brand); }
+.game-hint { color: var(--muted); font-size: 13px; margin-top: 12px; }
+.tap-btn { width: 100%; height: 180px; font-size: 40px; font-weight: 900; color:#fff; border: none; border-radius: 20px; background: linear-gradient(135deg,#ff7ac6,#6d5efc); }
+.react-pad { width: 100%; height: 200px; font-size: 30px; font-weight: 900; color:#fff; border: none; border-radius: 20px; }
+.react-pad.wait { background:#8b8aa6 } .react-pad.go { background:var(--ok) } .react-pad.early { background:#ee5253 } .react-pad.done { background:var(--brand) }
+
+/* ---------- name picker ---------- */
+.picker-title { color:#fff; text-align:center; font-size: 28px; font-weight: 900; margin: 6vh 0 6px; }
+.picker-sub { color:#fff; text-align:center; opacity:.85; margin-bottom: 22px; }
+.name-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.name-btn { padding: 20px 12px; border-radius: 16px; border: none; background: var(--card); font-size: 17px; font-weight: 800; color: var(--ink); cursor: pointer; box-shadow: var(--shadow); }
+.name-btn:active { transform: scale(.97); }
+
+/* ---------- bottom tab bar ---------- */
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; display: flex; background: rgba(255,255,255,.96); backdrop-filter: blur(8px); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
+.tab { flex: 1; text-align: center; padding: 12px 0 14px; font-size: 12px; font-weight: 700; color: var(--muted); background: none; border: none; cursor: pointer; }
+.tab .ic { display: block; font-size: 20px; margin-bottom: 2px; }
+.tab.active { color: var(--brand); }
+
+.center-note { color: var(--muted); text-align: center; padding: 20px 0; }
