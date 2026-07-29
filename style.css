@@ -3,25 +3,31 @@
    Tweak the colors in :root to reskin the whole app.
    ============================================================ */
 :root {
-  --bg1: #221a4d;
-  --bg2: #6d5efc;
-  --card: #ffffff;
-  --ink: #1d1b33;
-  --muted: #6b6980;
-  --brand: #6d5efc;
-  --brand-2: #ff7ac6;
-  --ok: #16c98d;
-  --line: #ece9f5;
+  --bg1: #4a6c7d;   /* dusk sky (top)   */
+  --bg2: #edcfa6;   /* sunrise sand (horizon) */
+  --card: #fbf6ec;  /* warm paper       */
+  --ink: #322e28;   /* soft charcoal    */
+  --muted: #6f6455; /* driftwood        */
+  --brand: #2e6657; /* evergreen        */
+  --brand-2: #b85423; /* burnt sienna / dawn */
+  --ok: #367a58;    /* forest green     */
+  --line: #e8ddc9;  /* stone line       */
   --radius: 20px;
-  --shadow: 0 12px 30px rgba(34, 26, 77, 0.18);
+  --shadow: 0 12px 28px rgba(60, 45, 25, 0.16);
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; padding: 0; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", "Avenir Next", Roboto, sans-serif;
   color: var(--ink);
-  background: linear-gradient(160deg, var(--bg1), var(--bg2));
+  /* dusk sky + soft sunrise glow + a layered mountain range pinned to the bottom */
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpolygon points='0,320 0,175 210,120 410,195 630,95 850,185 1070,110 1290,195 1440,140 1440,320' fill='%23b6cdc3'/%3E%3Cpolygon points='0,320 0,240 190,182 390,255 570,168 770,255 990,180 1210,255 1440,192 1440,320' fill='%233f6f60'/%3E%3C/svg%3E") center bottom / 100% 168px no-repeat,
+    radial-gradient(115% 75% at 82% 6%, rgba(255,214,150,.60), rgba(255,214,150,0) 55%),
+    linear-gradient(180deg, #3f5c6b 0%, #6f93a8 26%, #bcd2d6 52%, #ecd7b6 80%, #edcfa6 100%);
+  background-attachment: fixed, fixed, fixed;
+  background-repeat: no-repeat;
   min-height: 100dvh;
   padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
 }
@@ -31,8 +37,8 @@ body {
 
 /* ---------- header ---------- */
 .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-.logo { color: #fff; font-weight: 800; font-size: 22px; letter-spacing: .3px; display: flex; gap: 8px; align-items: center; }
-.whoami { color: #fff; font-size: 13px; opacity: .9; background: rgba(255,255,255,.16); padding: 6px 12px; border-radius: 999px; border: none; cursor: pointer; }
+.logo { color: #fff; font-weight: 800; font-size: 22px; letter-spacing: .3px; display: flex; gap: 8px; align-items: center; text-shadow: 0 1px 3px rgba(31, 45, 55, .35); }
+.whoami { color: #fff; font-size: 13px; opacity: .95; background: rgba(255,255,255,.20); padding: 6px 12px; border-radius: 999px; border: none; cursor: pointer; }
 
 /* ---------- cards ---------- */
 .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; margin-bottom: 16px; }
@@ -40,8 +46,9 @@ body {
 
 /* tag pill */
 .pill { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; color: #fff; margin-bottom: 14px; }
-.pill.deep { background:#6d5efc } .pill.funny { background:#ff9f43 } .pill.wyr { background:#0abde3 }
-.pill.hot { background:#ee5253 } .pill.memory { background:#10ac84 } .pill.hypo { background:#8854d0 } .pill.pick { background:#f368e0 }
+/* earthy, outdoorsy tag colors — all keep white text at AA contrast */
+.pill.deep { background:#3a6b5e } .pill.funny { background:#c1702a } .pill.wyr { background:#4a6d82 }
+.pill.hot { background:#b04a34 } .pill.memory { background:#5f6f3c } .pill.hypo { background:#7a5f78 } .pill.pick { background:#a67334 }
 
 .question { font-size: 23px; line-height: 1.35; font-weight: 700; margin: 0 0 8px; }
 
@@ -54,12 +61,12 @@ textarea:focus { outline: none; border-color: var(--brand); }
 .btn {
   display: block; width: 100%; border: none; border-radius: 14px; padding: 15px;
   font-size: 16px; font-weight: 800; color: #fff; cursor: pointer; margin-top: 12px;
-  background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 8px 18px rgba(109,94,252,.35);
+  background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 8px 18px rgba(46,102,87,.30);
   transition: transform .08s ease, opacity .2s;
 }
 .btn:active { transform: translateY(1px) scale(.995); }
 .btn:disabled { opacity: .5; cursor: default; }
-.btn.ghost { background: #f4f2fd; color: var(--brand); box-shadow: none; }
+.btn.ghost { background: #f2ead9; color: var(--brand); box-shadow: none; }
 
 /* ---------- answers reveal ---------- */
 .answers { margin-top: 6px; }
@@ -76,7 +83,7 @@ textarea:focus { outline: none; border-color: var(--brand); }
 .lb-rank.top { color: var(--brand-2); }
 .lb-name { flex: 1; font-weight: 700; }
 .lb-score { font-weight: 900; font-variant-numeric: tabular-nums; }
-.lb-mine { background: #f7f5ff; margin: 0 -12px; padding-left: 12px; padding-right: 12px; border-radius: 12px; }
+.lb-mine { background: #f4ecda; margin: 0 -12px; padding-left: 12px; padding-right: 12px; border-radius: 12px; }
 
 /* ---------- games ---------- */
 .game { text-align: center; }
@@ -85,19 +92,19 @@ textarea:focus { outline: none; border-color: var(--brand); }
 .game-input { width: 100%; text-align: center; font-size: 28px; padding: 12px; border: 2px solid var(--line); border-radius: 14px; }
 .game-input:focus { outline: none; border-color: var(--brand); }
 .game-hint { color: var(--muted); font-size: 13px; margin-top: 12px; }
-.tap-btn { width: 100%; height: 180px; font-size: 40px; font-weight: 900; color:#fff; border: none; border-radius: 20px; background: linear-gradient(135deg,#ff7ac6,#6d5efc); }
+.tap-btn { width: 100%; height: 180px; font-size: 40px; font-weight: 900; color:#fff; border: none; border-radius: 20px; background: linear-gradient(135deg, var(--brand-2), var(--brand)); }
 .react-pad { width: 100%; height: 200px; font-size: 30px; font-weight: 900; color:#fff; border: none; border-radius: 20px; }
-.react-pad.wait { background:#8b8aa6 } .react-pad.go { background:var(--ok) } .react-pad.early { background:#ee5253 } .react-pad.done { background:var(--brand) }
+.react-pad.wait { background:#8f9a93 } .react-pad.go { background:var(--ok) } .react-pad.early { background:#b04a34 } .react-pad.done { background:var(--brand) }
 
 /* ---------- name picker ---------- */
-.picker-title { color:#fff; text-align:center; font-size: 28px; font-weight: 900; margin: 6vh 0 6px; }
-.picker-sub { color:#fff; text-align:center; opacity:.85; margin-bottom: 22px; }
+.picker-title { color:#fff; text-align:center; font-size: 28px; font-weight: 900; margin: 6vh 0 6px; text-shadow: 0 2px 6px rgba(31, 45, 55, .35); }
+.picker-sub { color:#fff; text-align:center; opacity:.92; margin-bottom: 22px; text-shadow: 0 1px 3px rgba(31, 45, 55, .3); }
 .name-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .name-btn { padding: 20px 12px; border-radius: 16px; border: none; background: var(--card); font-size: 17px; font-weight: 800; color: var(--ink); cursor: pointer; box-shadow: var(--shadow); }
 .name-btn:active { transform: scale(.97); }
 
 /* ---------- bottom tab bar ---------- */
-.tabs { position: fixed; left: 0; right: 0; bottom: 0; display: flex; background: rgba(255,255,255,.96); backdrop-filter: blur(8px); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; display: flex; background: rgba(251,246,236,.95); backdrop-filter: blur(8px); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
 .tab { flex: 1; text-align: center; padding: 12px 0 14px; font-size: 12px; font-weight: 700; color: var(--muted); background: none; border: none; cursor: pointer; }
 .tab .ic { display: block; font-size: 20px; margin-bottom: 2px; }
 .tab.active { color: var(--brand); }
@@ -123,27 +130,27 @@ textarea:focus { outline: none; border-color: var(--brand); }
 
 /* Odd One Out */
 .odd-grid { display: grid; gap: 8px; }
-.odd-cell { aspect-ratio: 1; border: none; border-radius: 12px; background: #f4f2fd; font-size: 26px; cursor: pointer; }
+.odd-cell { aspect-ratio: 1; border: none; border-radius: 12px; background: #f2ead9; font-size: 26px; cursor: pointer; }
 
 /* Whack-a-Mole */
 .mole-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .mole-cell { aspect-ratio: 1; border: none; border-radius: 16px; background: #e9e4d2; font-size: 38px; cursor: pointer; }
 
 /* Aim Trainer */
-.aim-area { position: relative; height: 280px; background: #f4f2fd; border-radius: 16px; overflow: hidden; }
+.aim-area { position: relative; height: 280px; background: #f2ead9; border-radius: 16px; overflow: hidden; }
 .aim-target { position: absolute; width: 52px; height: 52px; border: none; border-radius: 50%; background: none; font-size: 34px; cursor: pointer; padding: 0; }
 
 /* RPS / two-button / true-false rows */
 .two-row, .tf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .rps-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-.rps-btn { font-size: 40px; padding: 16px 0; border: none; border-radius: 16px; background: #f4f2fd; cursor: pointer; }
+.rps-btn { font-size: 40px; padding: 16px 0; border: none; border-radius: 16px; background: #f2ead9; cursor: pointer; }
 .rps-result { text-align: center; font-weight: 700; font-size: 17px; margin: 8px 0 16px; min-height: 24px; }
 
 /* Guess the Number */
 .guess-feedback { text-align: center; font-size: 20px; font-weight: 800; margin: 14px 0; min-height: 26px; }
 
 /* Bigger Number */
-.big-btn { font-size: 34px; font-weight: 900; padding: 34px 0; border: none; border-radius: 18px; background: #f4f2fd; color: var(--ink); cursor: pointer; }
+.big-btn { font-size: 34px; font-weight: 900; padding: 34px 0; border: none; border-radius: 18px; background: #f2ead9; color: var(--ink); cursor: pointer; }
 
 /* Digit Memory */
 .digit-show { text-align: center; font-size: 46px; font-weight: 900; letter-spacing: 6px; min-height: 60px; margin: 20px 0; }
@@ -154,13 +161,13 @@ textarea:focus { outline: none; border-color: var(--brand); }
 
 /* Number Hunt */
 .schulte-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
-.schulte-cell { aspect-ratio: 1; border: none; border-radius: 10px; background: #f4f2fd; font-size: 18px; font-weight: 800; cursor: pointer; }
+.schulte-cell { aspect-ratio: 1; border: none; border-radius: 10px; background: #f2ead9; font-size: 18px; font-weight: 800; cursor: pointer; }
 .schulte-cell.hit { background: var(--ok); color: #fff; }
 
 /* Type / Scramble */
 .scramble-word, .type-word { text-align: center; font-size: 34px; font-weight: 900; letter-spacing: 3px; margin: 16px 0; }
 
 /* Stop the Bar */
-.bar-track { position: relative; height: 34px; background: #f4f2fd; border-radius: 999px; margin: 24px 0; overflow: hidden; }
-.bar-zone { position: absolute; left: 42%; width: 16%; top: 0; bottom: 0; background: rgba(22,201,141,.35); }
+.bar-track { position: relative; height: 34px; background: #f2ead9; border-radius: 999px; margin: 24px 0; overflow: hidden; }
+.bar-zone { position: absolute; left: 42%; width: 16%; top: 0; bottom: 0; background: rgba(54,122,88,.32); }
 .bar-marker { position: absolute; top: -4px; bottom: -4px; width: 6px; background: var(--brand); border-radius: 3px; left: 0; }
