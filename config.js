@@ -16,11 +16,11 @@ const CONFIG = {
   SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1ZWF3aHRjdm51YWt2ZnRvYmViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUyOTk3NDgsImV4cCI6MjEwMDg3NTc0OH0.u2KH6YLeEAbqk33WMEYjXOapx7N1nzt7Zf5LdH2bSrw",
 
   FRIENDS: [
-    "You",
-    "Friend 2",
-    "Friend 3",
-    "Friend 4",
-    "Friend 5",
-    "Friend 6",
+    "Jack",
+    "Will",
+    "Chris",
+    "Sophia",
+    "Winnie",
+    "Emilia",
   ],
 };
