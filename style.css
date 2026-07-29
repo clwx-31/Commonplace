@@ -103,3 +103,64 @@ textarea:focus { outline: none; border-color: var(--brand); }
 .tab.active { color: var(--brand); }
 
 .center-note { color: var(--muted); text-align: center; padding: 20px 0; }
+
+/* ============================================================
+   Extra mini-games
+   ============================================================ */
+.game-hintline { color: var(--muted); font-weight: 700; }
+.game-total { font-weight: 800; color: var(--muted); }
+
+/* Sequence Memory */
+.pad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pad { height: 92px; border: none; border-radius: 16px; opacity: .5; cursor: pointer; transition: opacity .1s, transform .1s; }
+.pad.lit { opacity: 1; transform: scale(1.03); }
+.pad-0 { background: #ee5253; } .pad-1 { background: #0abde3; } .pad-2 { background: #10ac84; } .pad-3 { background: #ff9f43; }
+
+/* Color Clash */
+.stroop-word { font-size: 52px; font-weight: 900; text-align: center; margin: 18px 0 22px; }
+.swatch-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.swatch { padding: 18px; border: none; border-radius: 14px; color: #fff; font-weight: 800; font-size: 16px; cursor: pointer; text-shadow: 0 1px 2px rgba(0,0,0,.25); }
+
+/* Odd One Out */
+.odd-grid { display: grid; gap: 8px; }
+.odd-cell { aspect-ratio: 1; border: none; border-radius: 12px; background: #f4f2fd; font-size: 26px; cursor: pointer; }
+
+/* Whack-a-Mole */
+.mole-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.mole-cell { aspect-ratio: 1; border: none; border-radius: 16px; background: #e9e4d2; font-size: 38px; cursor: pointer; }
+
+/* Aim Trainer */
+.aim-area { position: relative; height: 280px; background: #f4f2fd; border-radius: 16px; overflow: hidden; }
+.aim-target { position: absolute; width: 52px; height: 52px; border: none; border-radius: 50%; background: none; font-size: 34px; cursor: pointer; padding: 0; }
+
+/* RPS / two-button / true-false rows */
+.two-row, .tf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rps-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.rps-btn { font-size: 40px; padding: 16px 0; border: none; border-radius: 16px; background: #f4f2fd; cursor: pointer; }
+.rps-result { text-align: center; font-weight: 700; font-size: 17px; margin: 8px 0 16px; min-height: 24px; }
+
+/* Guess the Number */
+.guess-feedback { text-align: center; font-size: 20px; font-weight: 800; margin: 14px 0; min-height: 26px; }
+
+/* Bigger Number */
+.big-btn { font-size: 34px; font-weight: 900; padding: 34px 0; border: none; border-radius: 18px; background: #f4f2fd; color: var(--ink); cursor: pointer; }
+
+/* Digit Memory */
+.digit-show { text-align: center; font-size: 46px; font-weight: 900; letter-spacing: 6px; min-height: 60px; margin: 20px 0; }
+
+/* Higher or Lower */
+.card-face { text-align: center; font-size: 70px; font-weight: 900; margin: 10px 0 20px; }
+.hilo-msg { text-align: center; }
+
+/* Number Hunt */
+.schulte-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.schulte-cell { aspect-ratio: 1; border: none; border-radius: 10px; background: #f4f2fd; font-size: 18px; font-weight: 800; cursor: pointer; }
+.schulte-cell.hit { background: var(--ok); color: #fff; }
+
+/* Type / Scramble */
+.scramble-word, .type-word { text-align: center; font-size: 34px; font-weight: 900; letter-spacing: 3px; margin: 16px 0; }
+
+/* Stop the Bar */
+.bar-track { position: relative; height: 34px; background: #f4f2fd; border-radius: 999px; margin: 24px 0; overflow: hidden; }
+.bar-zone { position: absolute; left: 42%; width: 16%; top: 0; bottom: 0; background: rgba(22,201,141,.35); }
+.bar-marker { position: absolute; top: -4px; bottom: -4px; width: 6px; background: var(--brand); border-radius: 3px; left: 0; }

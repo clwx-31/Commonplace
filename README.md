@@ -6,6 +6,14 @@ Built for 6 friends scattered across the map after the TAC Great Books summer.
 
 No installing, no build tools. It's just files + a free database.
 
+**🌐 Live site:** https://clwx-31.github.io/Commonplace/
+_(It shows a setup screen until the Supabase keys in `config.js` are filled in — see below.)_
+
+Includes **18 mini-games** that rotate daily (Quick Math, Tap Frenzy, Reaction Rush,
+Sequence Memory, Color Clash, Odd One Out, Whack-a-Mole, Aim Trainer, Rock Paper
+Scissors, Guess the Number, Type Sprint, True or False, Bigger Number, Digit Memory,
+Higher or Lower, Number Hunt, Word Scramble, Stop the Bar).
+
 ---
 
 ## How it works (the flow)
